@@ -1,0 +1,6 @@
+provider_installation {
+  dev_overrides {
+    "local/nmap" = "D:/Projects/experiments/terraform-provider/terraform-provider-nmap/plugins/local/nmap/0.1.0/windows_amd64"
+  }
+  direct {}
+}
