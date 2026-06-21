@@ -21,61 +21,51 @@ You can use it to automatically audit networks, detect open ports, or validate h
 
 ---
 
-## 📦 Installation (Local Development)
+## 📦 Installation
 
-Since this is a local provider, you must configure Terraform to load it from a local path.
+### Terraform Registry (Recommended)
 
-### 1. Build the Provider
+This provider is published on the [Terraform Registry](https://registry.terraform.io/providers/marcuwynu23/nmap).
+
+Add the following to your Terraform configuration:
+
+```hcl
+terraform {
+  required_providers {
+    nmap = {
+      source  = "registry.terraform.io/marcuwynu23/nmap"
+      version = "~> 0.1.0"
+    }
+  }
+}
+
+provider "nmap" {}
+```
+
+Then run:
+
+```bash
+terraform init
+```
+
+### Local Development
+
+To build and use the provider locally without the registry:
 
 ```bash
 go build -o terraform-provider-nmap.exe
 ```
 
-This will create the provider binary.
-
-### 2. Place the Binary
-
-Terraform expects the following directory structure:
-
-```
-plugins/
-└── local/
-    └── nmap/
-        └── 0.1.0/
-            └── windows_amd64/
-                └── terraform-provider-nmap.exe
-```
-
-Or on Linux/macOS:
-
-```
-plugins/
-└── local/
-    └── nmap/
-        └── 0.1.0/
-            └── linux_amd64/
-                └── terraform-provider-nmap
-```
-
-### 3. Create the Terraform CLI Config
-
-Create a file:
-
-- **Windows:** `%APPDATA%\terraform.d\cli_config.tfrc`
-- **Linux/macOS:** `~/.terraform.d/cli_config.tfrc`
-
-Add this content:
+Then configure Terraform with a dev override in `%APPDATA%\terraform.d\cli_config.tfrc` (Windows) or `~/.terraform.d/cli_config.tfrc` (Linux/macOS):
 
 ```hcl
 provider_installation {
   dev_overrides {
-    "local/nmap" = "D:/Projects/experiments/terraform-provider/terraform-provider-nmap/plugins/local/nmap/0.1.0/windows_amd64"
+    "registry.terraform.io/marcuwynu23/nmap" = "D:/path/to/terraform-provider-nmap"
   }
   direct {}
 }
 ```
-
-Make sure the path matches your local setup.
 
 ---
 
@@ -87,8 +77,8 @@ In your Terraform configuration (`main.tf`):
 terraform {
   required_providers {
     nmap = {
-      source  = "local/nmap"
-      version = "0.1.0"
+      source  = "registry.terraform.io/marcuwynu23/nmap"
+      version = "~> 0.1.0"
     }
   }
 }
@@ -130,6 +120,14 @@ scan_result = [
 
 ```
 terraform-provider-nmap/
+├── .goreleaser.yaml       # GoReleaser configuration for cross-platform builds
+├── .github/
+│   └── workflows/
+│       └── release.yml    # GitHub Actions release workflow
+├── docs/
+│   ├── index.md           # Terraform Registry documentation
+│   └── data-sources/
+│       └── nmap_scan.md   # Data source documentation
 ├── internal/
 │   ├── provider.go        # Defines provider configuration and data sources
 │   └── datasources/
@@ -171,7 +169,7 @@ terraform apply
 - [ ] Support for additional Nmap options (e.g. `-sV`, `-O`, timing templates)
 - [ ] JSON output parsing
 - [ ] Cross-platform binary builds
-- [ ] Publish to Terraform Registry
+- [x] Publish to Terraform Registry
 
 ---
 
