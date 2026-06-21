@@ -1,2 +1,6 @@
 *.exe
 plugins/
+dist/
+*.test
+*.out
+terraform-provider-nmap
