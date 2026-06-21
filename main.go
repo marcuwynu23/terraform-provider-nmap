@@ -10,8 +10,7 @@ import (
 
 func main() {
     opts := providerserver.ServeOpts{
-        // Address: "registry.terraform.io/marcuwynu23/nmap", // for local dev use any namespace
-        Address: "local/nmap", // for local dev use any namespace
+        Address: "registry.terraform.io/marcuwynu23/nmap",
     }
 
     if err := providerserver.Serve(context.Background(), internal.NewProvider, opts); err != nil {
