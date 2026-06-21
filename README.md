@@ -5,14 +5,14 @@ This provider lets you perform network discovery and port scanning as part of yo
 
 ---
 
-## 🌐 Overview
+## Overview
 
 `terraform-provider-nmap` allows Terraform configurations to run Nmap scans and expose the results as Terraform data sources.
 You can use it to automatically audit networks, detect open ports, or validate host accessibility during provisioning.
 
 ---
 
-## ⚙️ Features
+## Features
 
 - Perform basic Nmap scans directly from Terraform
 - Return discovered hosts and their open ports
@@ -21,7 +21,7 @@ You can use it to automatically audit networks, detect open ports, or validate h
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Terraform Registry (Recommended)
 
@@ -69,7 +69,7 @@ provider_installation {
 
 ---
 
-## 🧪 Usage Example
+## Usage Example
 
 In your Terraform configuration (`main.tf`):
 
@@ -116,7 +116,7 @@ scan_result = [
 
 ---
 
-## 🧱 Provider Structure
+## Provider Structure
 
 ```
 terraform-provider-nmap/
@@ -139,7 +139,7 @@ terraform-provider-nmap/
 
 ---
 
-## 🧰 Development Notes
+## Development Notes
 
 ### Dependencies
 
@@ -164,7 +164,7 @@ terraform apply
 
 ---
 
-## 🚀 Roadmap
+## Roadmap
 
 - [ ] Support for additional Nmap options (e.g. `-sV`, `-O`, timing templates)
 - [ ] JSON output parsing
@@ -173,14 +173,8 @@ terraform apply
 
 ---
 
-## 🧑‍💻 Author
 
-**Marc Wayne Menorca (@marcuwynu23)**
-Lead Developer & Open Source Contributor
-[GitHub](https://github.com/marcuwynu23)
 
----
-
-## ⚖️ License
+## License
 
 This project is licensed under the **MIT License** — feel free to use, modify, and distribute.
